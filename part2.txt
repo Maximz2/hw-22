@@ -1,0 +1,35 @@
+Я изучил работу  https://github.com/Glassyflute/HW21
+Я обнаружил следующие запахи:
+
+- main.py (строка 4)
+- Лишняя переменная
+- Использовать "while True" в 13 строке
+
+- classes.py (строки с 51 по 65)
+- Мертвый код
+- Удалить эти строки
+
+- classes.py (строки с 189 по 215)
+- Дублирование кода
+- Класс Shop наследуется от Store, поэтому можно вообще удалить эти строки
+
+- utils.py (весь файл)
+- Не знаю, что за запах (может быть спагеттти), но можно удалить весь файл и в classes.py добавить класс Courier, в котором добавить необходимый метод.
+При этом нужно будет скоректировать и main.py
+- class Courier:
+    def __init__(self, data_request: Request):
+        self.request = data_request
+        self.location_from = data_request.from_
+        self.location_to = data_request.to
+
+    def transfer(self) -> str:
+        count = self.request.amount
+        item = self.request.product
+        from_ = self.request.from_
+        to = self.request.to
+
+        return f"Курьер забрал {count} {item} с {from_}.\n" \
+               f"Курьер везет {count} {item} с {from_} в {to}.\n" \
+               f"Курьер доставил {count} {item} в{to}.\n" \
+               f"Товар {item} добавлен в {to}."
+
